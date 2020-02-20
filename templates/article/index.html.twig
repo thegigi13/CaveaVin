@@ -1,0 +1,24 @@
+{# templates/article/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Accueil | {{ parent() }}{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			{% for article in articles %}
+				<div class="col s12 m4 l3">
+					<div class="article-card">
+						<a href="{{ path('article_show', {'id': article.id}) }}">
+							<img src="{{ asset('uploads/' ~ article.picture) }}" class="col s6 m3 l3">
+							<h6>{{ article.title }}</h6>
+						</a>
+						<span class="date">{{ article.publicationDate|date('d/m/Y') }}</span>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

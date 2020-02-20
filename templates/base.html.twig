@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{# templates/base.html.twig #}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}PtitCave{% endblock %}</title>
+        {% block stylesheets %}
+            <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" > -->
+        	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}">
+        {% endblock %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="nav-wrapper">
+                <div class="container">
+                    <a href="{{ path('homepage') }}" class="brand-logo">Cave a Vin</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#">Liste bouteilles</a></li>
+                        <li><a href="#">Liste Plats</a></li>
+                        {% if is_granted('ROLE_USER') %}
+                            <li class="nav-item {% if mainNavMember is defined %}active{% endif %}">
+                                <a class="nav-link" href="{{ path('article_add')}}">Ajouter une bouteille</a>
+                            </li>
+                        {% endif %}
+                        <li><a href="{{ path('login')}} ">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <body>
+        {% block body %}
+
+        {% endblock %}
+
+        {% block content %}
+	  	{% endblock %}
+
+        {% block javascripts %}
+        	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            <script type="text/javascript">
+                $('select').formSelect();
+            </script>
+        {% endblock %}
+    </body>
+</html>

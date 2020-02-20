@@ -1,0 +1,33 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+
+#config/routes.yaml
+
+homepage:
+  path: / # affichage de la page d'index
+  controller: App\Controller\ArticleController::index
+
+article_add:
+  path: /add  # ajouter un article
+  controller: App\Controller\ArticleController::add
+
+article_show:
+  path: /show/{id}  # affichage de l'article
+  controller: App\Controller\ArticleController::show
+
+article_edit:
+  path: /edit/{id}  # modification d'un article
+  controller: App\Controller\ArticleController::edit
+  requirements:
+    id: '\d+'
+
+article_remove:
+  path: /remove/{id}  # suppression d'un article
+  controller: App\Controller\ArticleController::remove
+  requirements:
+    id: '\d+'
+
+logout:
+  path: /logout

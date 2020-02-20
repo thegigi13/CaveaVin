@@ -1,0 +1,41 @@
+{# templates/article/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+	<article class="container">
+		<div class="row">
+			<div class="col s12 m12 l8 offset-l2">
+				<div class="col s6 m6 l4 offset-l1">
+					<h2>{{ article.title }}</h2>
+					<span>
+						{{ article.publicationDate|date('d/m/Y') }}
+					</span>
+					<p>
+						<img src="{{ asset('uploads/' ~ article.picture)  }}?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="responsive-img">
+					</p>
+				</div>
+				<div class="col s6 m6 l4 offset-l1">
+					<span class="categories">
+						{% for category in article.categories %} 
+						<h4>{{ category.label }}{{ loop.last ? '' : ',' }}</h4>
+						{% endfor %}
+					</span>
+					<p>
+						{{ article.content }}
+					</p>
+				</div>
+				<div class="col s11 m11 l6">
+					<button>
+						<a class="nav-link" href="{{ path('article_edit', {'id': article.id}) }}">
+						Modifier bouteille</a>
+					</button>
+				</div>
+
+			</div>
+		</div>
+
+		</div>
+	</article>
+{% endblock %}
